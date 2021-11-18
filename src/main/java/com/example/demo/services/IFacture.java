@@ -8,7 +8,7 @@ package com.example.demo.services;
 	public interface IFacture {
 		List <Facture>  retrieveAllFactures();
 
-		Facture addProduit(Facture F);
+		Facture addFacture(Facture F);
 
 		void deleteFacture(Long id);
 
