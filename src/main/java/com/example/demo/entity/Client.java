@@ -19,19 +19,20 @@ import javax.persistence.TemporalType;
 public class Client implements Serialisable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	public long IdClient;
-	public String Nom;
-	public String Prenom;
+	private  long IdClient;
+	private  String Nom;
+	private  String Prenom;
 	@Temporal(TemporalType.DATE)
-	public Date dateNaissance ;
-	public String eMail;
-	public String Password;
+	private  Date dateNaissance ;
+	private  String eMail;
+	private  String Password;
 	@Enumerated(EnumType.STRING)
-	public CategoryClient categoryClient;
+	private  CategoryClient categoryClient;
 	@Enumerated(EnumType.STRING)
-	public Profession profession;
+	private  Profession profession;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
-	private Set<Facture>Facture ;
+	private Set<Facture> Facture ;
+	
 	public long getIdClient() {
 		return IdClient;
 	}
@@ -71,6 +72,12 @@ public class Client implements Serialisable {
 	public Profession getProfession() {
 		return profession;
 	}
+	@Override
+	public String toString() {
+		return "Client [IdClient=" + IdClient + ", Nom=" + Nom + ", Prenom=" + Prenom + ", dateNaissance="
+				+ dateNaissance + ", eMail=" + eMail + ", Password=" + Password + ", categoryClient=" + categoryClient
+				+ ", profession=" + profession + ", Facture=" + Facture + "]";
+	}
 	public void setProfession(Profession profession) {
 		this.profession = profession;
 	}
@@ -79,8 +86,7 @@ public class Client implements Serialisable {
 		// TODO Auto-generated constructor stub
 	}
 	public Client(long idClient, String nom, String prenom, Date dateNaissance, String eMail, String password,
-			CategoryClient categoryClient, Profession profession) {
-		super();
+			CategoryClient categoryClient, Profession profession, Set<com.example.demo.entity.Facture> facture) {
 		IdClient = idClient;
 		Nom = nom;
 		Prenom = prenom;
@@ -89,6 +95,19 @@ public class Client implements Serialisable {
 		Password = password;
 		this.categoryClient = categoryClient;
 		this.profession = profession;
+		Facture = facture;
+	}
+	public String getPrenom() {
+		return Prenom;
+	}
+	public void setPrenom(String prenom) {
+		Prenom = prenom;
+	}
+	public Set<Facture> getFacture() {
+		return Facture;
+	}
+	public void setFacture(Set<Facture> facture) {
+		Facture = facture;
 	}
 	
 	
