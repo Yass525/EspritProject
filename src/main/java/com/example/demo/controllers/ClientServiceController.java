@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +34,16 @@ public class ClientServiceController {
 	@Autowired
 	private ClientRepository clientRepository;
 	
-	
+	@GetMapping("/admin")
+    public String homeAdmin() {
+
+        return "This is admin page";
+    }
+	@GetMapping("/user")
+    public String homeUser() {
+
+        return "This is user page";
+    }
 	
 	// http://localhost:8082/SpringMVC/servlet/retrieve-all-clients
 	@GetMapping("/retrieve-all-clients")
@@ -85,13 +95,13 @@ public class ClientServiceController {
 	}
 	
 	// http://localhost:8082/SpringMVC/servlet/update-client/{client-id}
-	@PostMapping("/update-client/{client-id}")
+	@PutMapping("/update-client/{client-id}")
 	@ResponseBody
 	public Client updateClient(@RequestBody Client c, @PathVariable("client-id") Long id)
 	{
 		clientServices.findById(id)
 				.orElseThrow(()-> new IllegalArgumentException("Invalid user ID"));
-		
+		c.setPassword(passwordEncoder.encode(c.getPassword()));
 		Client client_updated = clientServices.updateClient(c);
 		return client_updated;
 	}

@@ -15,16 +15,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.NoArgsConstructor;
+@NoArgsConstructor
 @Entity
 public class Facture implements Serialisable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	public long IdFacture;
-	public Float MontantRemise;
-	public Float MontantFacture;
+	private long IdFacture;
+	private Float MontantRemise;
+	private Float MontantFacture;
 	@Temporal(TemporalType.DATE)
-	public Date DateFacture;
-	public boolean Active;
+	private Date DateFacture;
+	private boolean Active;
 	@ManyToOne
 	Client client;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="facture")

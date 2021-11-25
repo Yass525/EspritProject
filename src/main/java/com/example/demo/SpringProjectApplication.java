@@ -18,6 +18,8 @@ import com.example.demo.entity.Profession;
 import com.example.demo.services.IClient;
 import com.example.demo.services.IDetailFacture;
 import com.example.demo.services.IFournisseur;
+
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 //import com.example.demo.entity.Rayon;
 //import com.example.demo.services.IFacture;
 
@@ -28,8 +30,9 @@ import com.example.demo.services.IFournisseur;
 //import com.example.demo.services.IClient;
 //import com.example.demo.services.IProduit;
 //import com.example.demo.services.IStock;
-
+@EnableSwagger2
 @SpringBootApplication
+
 public class SpringProjectApplication implements CommandLineRunner {
 	@Autowired
 	//IFournisseur fournisseurService;

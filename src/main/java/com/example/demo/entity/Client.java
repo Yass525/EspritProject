@@ -30,6 +30,8 @@ public class Client implements Serialisable {
 	private  CategoryClient categoryClient;
 	@Enumerated(EnumType.STRING)
 	private  Profession profession;
+	private String role;
+	private boolean enabled;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="client")
 	private Set<Facture> Facture ;
 	
@@ -72,12 +74,32 @@ public class Client implements Serialisable {
 	public Profession getProfession() {
 		return profession;
 	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	@Override
 	public String toString() {
-		return "Client [IdClient=" + IdClient + ", Nom=" + Nom + ", Prenom=" + Prenom + ", dateNaissance="
-				+ dateNaissance + ", eMail=" + eMail + ", Password=" + Password + ", categoryClient=" + categoryClient
-				+ ", profession=" + profession + ", Facture=" + Facture + "]";
+		return "Client{" +
+				"IdClient=" + IdClient +
+				", Nom='" + Nom + '\'' +
+				", Prenom='" + Prenom + '\'' +
+				", dateNaissance=" + dateNaissance +
+				", eMail='" + eMail + '\'' +
+				", Password='" + Password + '\'' +
+				", categoryClient=" + categoryClient +
+				", profession=" + profession +
+				", role='" + role + '\'' +
+				", enabled=" + enabled +
+				", Facture=" + Facture +
+				'}';
 	}
+
 	public void setProfession(Profession profession) {
 		this.profession = profession;
 	}
@@ -85,8 +107,8 @@ public class Client implements Serialisable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Client(long idClient, String nom, String prenom, Date dateNaissance, String eMail, String password,
-			CategoryClient categoryClient, Profession profession, Set<com.example.demo.entity.Facture> facture) {
+
+	public Client(long idClient, String nom, String prenom, Date dateNaissance, String eMail, String password, CategoryClient categoryClient, Profession profession, String role, boolean enabled, Set<com.example.demo.entity.Facture> facture) {
 		IdClient = idClient;
 		Nom = nom;
 		Prenom = prenom;
@@ -95,8 +117,11 @@ public class Client implements Serialisable {
 		Password = password;
 		this.categoryClient = categoryClient;
 		this.profession = profession;
+		this.role = "ROLE_USER";
+		this.enabled = enabled;
 		Facture = facture;
 	}
+
 	public String getPrenom() {
 		return Prenom;
 	}
@@ -108,6 +133,12 @@ public class Client implements Serialisable {
 	}
 	public void setFacture(Set<Facture> facture) {
 		Facture = facture;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	
