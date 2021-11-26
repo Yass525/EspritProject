@@ -15,5 +15,13 @@ public interface IStock  {
 
 		Stock retrieveStock(Long id);
 
+		List<Stock> findStockByLabel(String s);
+
+		List<Stock> findEmptyStocks();
+
+
+		List<Stock> findLowStocks();
+
+
 
 }

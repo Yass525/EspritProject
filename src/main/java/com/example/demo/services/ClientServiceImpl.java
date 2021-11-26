@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,9 +37,9 @@ public class ClientServiceImpl implements IClient {
 	}
 
 	@Override
-	public Client updateClient(Client l) {
+	public Client updateClient(Client c) {
 		// TODO Auto-generated method stub
-		return clientRepository.save(l);
+		return clientRepository.save(c);
 	}
 
 	@Override
@@ -47,5 +48,11 @@ public class ClientServiceImpl implements IClient {
 		Client client =clientRepository.findById(id).orElse(null);
 		return client;
 	}
-
+	
+	@Override
+	public Optional<Client> findById(Long id) {
+		return clientRepository.findById(id);
+	}
+	
+	
 }

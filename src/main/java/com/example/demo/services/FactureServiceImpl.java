@@ -21,7 +21,7 @@ public class FactureServiceImpl implements IFacture {
 	}
 
 	@Override
-	public Facture addProduit(Facture F) {
+	public Facture addFacture(Facture F) {
 		// TODO Auto-generated method stub
 		factureRepository.save(F);
 		return F;

@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.demo.entity.Client;
 
@@ -11,8 +12,11 @@ public interface IClient {
 
 	void deleteClient(Long id);
 
-	Client updateClient(Client l);
+	Client updateClient(Client c);
 
 	Client retrieveClient(Long id);
 
+	Optional<Client> findById(Long id);
+	
+	
 }
