@@ -33,7 +33,13 @@ public class ClientServiceController {
 	
 	@Autowired
 	private ClientRepository clientRepository;
-	
+
+	@GetMapping("/")
+	public String homen() {
+
+		return "home page";
+	}
+
 	@GetMapping("/admin")
     public String homeAdmin() {
 
@@ -44,37 +50,36 @@ public class ClientServiceController {
 
         return "This is user page";
     }
-	
+
+
 	// http://localhost:8082/SpringMVC/servlet/retrieve-all-clients
-	@GetMapping("/retrieve-all-clients")
+	@GetMapping("admin/retrieve-all-clients")
 	@ResponseBody
 	public List<Client> getClients() {
-	List<Client> listClients = clientServices.retrieveAllClients();
-	return listClients;
+		List<Client> listClients = clientServices.retrieveAllClients();
+		return listClients;
 	}
-	
+
+
 	// http://localhost:8082/SpringMVC/servlet/add-client
 	@PostMapping("/add-client")
 	@ResponseBody
-	public ResponseEntity<Object> addClient(@RequestBody Client c)
-	{
-		
+	public ResponseEntity<Object> addClient(@RequestBody Client c) {
+
 		Client client1 = clientRepository.findByEmailAddress(c.geteMail());
-		if (client1 == null){
+		if (client1 == null) {
 			c.setPassword(passwordEncoder.encode(c.getPassword()));
-			
+
 			Client client = clientServices.addClient(c);
 			return ResponseHandler.generateResponse("Successfully added data!", HttpStatus.OK, client);
-			
-		}else{
-			
+
+		} else {
+
 			//throw new IllegalArgumentException("Mail alreasy exists");
 			return ResponseHandler.generateResponse("Mail already exists", HttpStatus.MULTI_STATUS, "ss");
 		}
-		
-		
 	}
-	
+
 	// http://localhost:8082/SpringMVC/servlet/retrieve-client/8
 	@GetMapping("/retrieve-client/{client-id}")
 	@ResponseBody
@@ -85,13 +90,13 @@ public class ClientServiceController {
 	
 	// http://localhost:8082/SpringMVC/servlet/remove-client/{client-id}
 
-	@DeleteMapping("/remove-client/{client-id}")
+	@DeleteMapping("admin/remove-client/{client-id}")
 	@ResponseBody
 	public void removeClient(@PathVariable("client-id") Long id) {
 		clientServices.findById(id)
-		.orElseThrow(()-> new IllegalArgumentException("Invalid user ID"));
-		
-		clientServices.deleteClient(id);;
+				.orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+
+		clientServices.deleteClient(id);
 	}
 	
 	// http://localhost:8082/SpringMVC/servlet/update-client/{client-id}

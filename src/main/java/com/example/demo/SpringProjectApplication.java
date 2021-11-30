@@ -34,42 +34,43 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 
 public class SpringProjectApplication implements CommandLineRunner {
-	@Autowired
-	//IFournisseur fournisseurService;
-	//IFacture factureService;
-	//IProduit produitService;
-	IClient clientService;
-	private Date dates;
-	//IStock stockService;
-	//IRayon rayonService;
-	//IDetailFacture detailfactureService;
-	
+    @Autowired
+    //IFournisseur fournisseurService;
+    //IFacture factureService;
+    //IProduit produitService;
+    IClient clientService;
+    private Date dates;
+    //IStock stockService;
+    //IRayon rayonService;
+    //IDetailFacture detailfactureService;
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringProjectApplication.class, args);
-	}
 
-	@Override
-	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		//detailfactureService.addDetailsFacture(new DetailsFacture (1L,245,67F,5,15));
-	 dates = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
-		
-		//clientService.addClient(new Client (1L,"yass2","tr",dates,"asma@yahoo.fr","ghgjh",CategoryClient.Fidele,Profession.Cadre, null));
-		
-		//System.out.println("***************************");
-		
-		//detailfactureService.retrieveAllDetailsFacture().forEach(r->{
-			//System.out.println(r.toString());
-	//});
-		//System.out.println("***************************");
-		//DetailsFacture det = detailfactureService.retrieveDetailsFacture(1L); 
-		//System.out.println(det.getIdDetailsFacture());
-		//System.out.println("***************************");
-		
+    public static void main(String[] args) {
+        SpringApplication.run(SpringProjectApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // TODO Auto-generated method stub
+        //detailfactureService.addDetailsFacture(new DetailsFacture (1L,245,67F,5,15));
+        dates = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
+        System.out.println(org.hibernate.Version.getVersionString());
+        System.out.println("eeeeeeeeeeeeeee");
+        //clientService.addClient(new Client (1L,"yass2","tr",dates,"asma@yahoo.fr","ghgjh",CategoryClient.Fidele,Profession.Cadre, null));
+
+        //System.out.println("***************************");
+
+        //detailfactureService.retrieveAllDetailsFacture().forEach(r->{
+        //System.out.println(r.toString());
+        //});
+        //System.out.println("***************************");
+        //DetailsFacture det = detailfactureService.retrieveDetailsFacture(1L);
+        //System.out.println(det.getIdDetailsFacture());
+        //System.out.println("***************************");
+
 //		clientService.retrieveAllClients().forEach(r->{
-			//System.out.println(r.toString());
-	//});
+        //System.out.println(r.toString());
+        //});
 		/*System.out.println("***************************");
 		Client cl = clientService.retrieveClient(1L); 
 		System.out.println(cl.getNom());
@@ -79,4 +80,5 @@ public class SpringProjectApplication implements CommandLineRunner {
 		
 		System.out.println(dateToString);
 		System.out.println("***************************");  */
-	}}
+    }
+}

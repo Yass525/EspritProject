@@ -12,6 +12,7 @@ public interface ClientRepository extends JpaRepository<Client,Long> {
 
 	@Query(value = "SELECT * FROM CLIENT WHERE  E_MAIL = ?1", nativeQuery = true)
 	public Client findByEmailAddress(String email);
-	
-	
+
+	@Query(value = "SELECT * FROM CLIENT WHERE  NOM = ?1", nativeQuery = true)
+	public Client findByNom(String Nom);
 }
