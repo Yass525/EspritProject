@@ -18,6 +18,7 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.crypto.KeyGenerator;
 import javax.sql.DataSource;
 
 
@@ -40,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				  .authorizeRequests()
 				  .antMatchers("/admin", "/admin/**").hasRole("ADMIN")
 				  .antMatchers("/user","/user/**").hasAnyRole("USER", "ADMIN")
-				  .antMatchers("/authenticate").permitAll()
+				  .antMatchers("/authenticate","/**").permitAll()
 				  .anyRequest().authenticated()
 				  //.antMatchers("/**").permitAll()
 				  //.and().formLogin();

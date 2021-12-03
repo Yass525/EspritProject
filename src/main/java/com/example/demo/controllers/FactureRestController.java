@@ -1,13 +1,12 @@
 package com.example.demo.controllers;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.example.demo.entity.CategoryClient;
 import com.example.demo.entity.Client;
-import com.example.demo.utils.ClientFacture;
-import org.hibernate.mapping.Any;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,21 +68,15 @@ public class FactureRestController {
 		@ResponseBody
 		public List<Facture> findInvoiceByClientId(@PathVariable("id") Long id ) {
 			List<Facture>listFactures = factureRepository.findInvoiceByClientId(id);
-			
 			return listFactures;
 		}
 		
 		 //localhost:8082/findInvoiceGroupedByCategorie
-				@GetMapping("/findInvoiceGroupedByCategorie")
-				@ResponseBody
-				public Map<Long, CategoryClient> findInvoiceGroupedByCategorie( ) {
-					Map<Long, CategoryClient> FactureByCategorie = new HashMap();
-					List<Client> listFactures = factureRepository.findInvoiceGroupedByCategorie();
-
-					for (final Client c : listFactures) {
-						FactureByCategorie.put(c.getIdClient(),c.getCategoryClient());
-			        }
-					return FactureByCategorie;
-				}
+		 @GetMapping("/findInvoiceGroupedByCategorie")
+		 @ResponseBody
+		 	public <T> List<T> findInvoiceGroupedByCategorie( ) {
+				List<T> listFactures = factureRepository.findInvoiceGroupedByCategorie();
+				return listFactures;
+			}
 
 }

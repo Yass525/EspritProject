@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 
 
+import jdk.nashorn.internal.ir.annotations.Ignore;
+
 import java.util.Date;
 import java.util.Set;
 
@@ -10,13 +12,13 @@ import javax.persistence.*;
 public class Client implements Serialisable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long IdClient;
-    private String Nom;
-    private String Prenom;
+    private long idClient;
+    private String nom;
+    private String prenom;
     @Temporal(TemporalType.DATE)
     private Date dateNaissance;
     private String eMail;
-    private String Password;
+    private String password;
     @Enumerated(EnumType.STRING)
     private CategoryClient categoryClient;
     @Enumerated(EnumType.STRING)
@@ -24,30 +26,31 @@ public class Client implements Serialisable {
     private String role;
     private boolean enabled;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+	@Ignore
     private Set<Facture> Facture;
 
 	public long getIdClient() {
-		return IdClient;
+		return idClient;
 	}
 
 	public void setIdClient(long idClient) {
-		IdClient = idClient;
+		this.idClient = idClient;
 	}
 
 	public String getNom() {
-		return Nom;
+		return nom;
 	}
 
 	public void setNom(String nom) {
-		Nom = nom;
+		this.nom = nom;
 	}
 
 	public String getPrenom() {
-		return Prenom;
+		return prenom;
 	}
 
 	public void setPrenom(String prenom) {
-		Prenom = prenom;
+		this.prenom = prenom;
 	}
 
 	public Date getDateNaissance() {
@@ -67,11 +70,11 @@ public class Client implements Serialisable {
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public CategoryClient getCategoryClient() {
@@ -116,12 +119,12 @@ public class Client implements Serialisable {
 
 	public Client(long idClient, String nom, String prenom, Date dateNaissance, String eMail, String password,
 				  CategoryClient categoryClient, Profession profession, String role, boolean enabled, Set<com.example.demo.entity.Facture> facture) {
-		IdClient = idClient;
-		Nom = nom;
-		Prenom = prenom;
+		this.idClient = idClient;
+		this.nom = nom;
+		this.prenom = prenom;
 		this.dateNaissance = dateNaissance;
 		this.eMail = eMail;
-		Password = password;
+		this.password = password;
 		this.categoryClient = categoryClient;
 		this.profession = profession;
 		this.role = role;
@@ -132,12 +135,12 @@ public class Client implements Serialisable {
 	@Override
 	public String toString() {
 		return "Client{" +
-				"IdClient=" + IdClient +
-				", Nom='" + Nom + '\'' +
-				", Prenom='" + Prenom + '\'' +
+				"IdClient=" + idClient +
+				", Nom='" + nom + '\'' +
+				", Prenom='" + prenom + '\'' +
 				", dateNaissance=" + dateNaissance +
 				", eMail='" + eMail + '\'' +
-				", Password='" + Password + '\'' +
+				", Password='" + password + '\'' +
 				", categoryClient=" + categoryClient +
 				", profession=" + profession +
 				", role='" + role + '\'' +
@@ -153,8 +156,8 @@ public class Client implements Serialisable {
 	}
 
 	public Client(String nom, String password, String role) {
-		Nom = nom;
-		Password = password;
+		this.nom = nom;
+		this.password = password;
 		this.role = role;
 	}
 }

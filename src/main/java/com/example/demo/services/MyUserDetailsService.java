@@ -22,12 +22,12 @@ public class MyUserDetailsService implements UserDetailsService {
     private ClientRepository clientRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String nom) throws UsernameNotFoundException {
-        Client client = clientRepository.findByNom(nom);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        Client client = clientRepository.findByEmailAddress(email);
 
         final List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(client.getRole()));
 
-        return  new User(client.getNom(), client.getPassword(), authorities  );
+        return  new User(client.geteMail(), client.getPassword(), authorities  );
     }
 }

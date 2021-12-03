@@ -1,13 +1,10 @@
 package com.example.demo.entity;
 
-
-
 import java.util.Date;
 import java.util.Set;
-
 import javax.persistence.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
@@ -22,20 +19,29 @@ public class Facture implements Serialisable {
 	private boolean Active;
 	@ManyToOne
 	@JoinColumn(name = "client_id_client", insertable = false, updatable = false)
+	@Ignore
 	private Client client;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="facture")
 	private Set<DetailsFacture> DetailsFacture;
 
 	private long client_id_client ;
 
-	public Client getClient() {
+	public long getClient_id_client() {
+		return client_id_client;
+	}
+
+	public void setClient_id_client(long client_id_client) {
+		this.client_id_client = client_id_client;
+	}
+
+	private Client getClient() {
 		return client;
 	}
 //	public String getClient() {
 //		return client.getIdClient()+""+client_id_client;
 //	}
 
-	public void setClient(Client client) {
+	private void setClient(Client client) {
 		this.client = client;
 	}
 
@@ -79,16 +85,14 @@ public class Facture implements Serialisable {
 		Active = active;
 	}
 
-	public Facture(long idFacture, Float montantRemise, Float montantFacture, Date dateFacture, boolean active,
-			Client client) {
-		super();
+	public Facture(long idFacture, Float montantRemise, Float montantFacture, Date dateFacture, boolean active) {
+
 		IdFacture = idFacture;
 		MontantRemise = montantRemise;
 		MontantFacture = montantFacture;
 		DateFacture = dateFacture;
-		Active = active;
-		this.client = client;
-		System.out.println("eeeeeeeeeeeeeee");
+
+
 	}
 
 
