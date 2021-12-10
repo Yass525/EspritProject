@@ -1,0 +1,91 @@
+B.O: determiner les conditions meterologiques favorables pour jouer du tenis
+
+library(rpart)
+library(rpart)->ctream
+
+Tennis1-> entrepot de t'app
+Tennis2-> entrepot de de test
+
+Variable de dec => Oui=9; Non=5 
+
+minsplit= 1 ( nb minimum d'individus qui valide une modalité)
+
+> add.tennis1.cnt<-rpart.control(minsplit = 1)
+> add.tennis1<-rpart(Jouer~Ciel+Température+Humidité+Vent,tennis1,control=add.tennis1.cnt)
+> add.tennis1
+> plot(add.tennis1)
+> text(add.tennis1)
+
+
+Base de régles:
+R1: SI Ciel couvert Alors jouer = Oui
+R2: Si Ciel ensoleillé ou pluie et Humidité >= 82,5 et temperature >=20,25
+    Alors Jouer= non
+R3: Si Ciel ensoleillé ou pluie et Humidité >= 82,5 et temperature <20.25 
+    Alors Jouer=oui
+R4: Si Ciel ensoleillé ou pluie et Humidité < 82,5 et temperature >20.25 
+    Alors Jouer=non
+R5: Si Ciel ensoleillé ou pluie et Humidité < 82,5 et temperature <20.25 
+    Alors Jouer=non
+
+> plot (add.tennis1, branch=0); plot (add.tennis1, branch=.7);
+  text (add.tennis1, use.n=T)
+> plot (add.tennis1, branch=.4, uniform=T, compress=T);
+  text (add.tennis1, all=T,use.n=T)
+> plot (add.tennis1, branch=.2, uniform=T, compress=T, margin=.1);
+  text (add.tennis1, all=T, use.n=T, fancy=T)
+
+> predict(add.tennis1,tennis2)
+  Non Oui
+1   1   0
+2   0   1
+3   0   1
+=======================================================
+Importing BreastApp et BreastTest
+
+B.O:Détecter les conditions micro biologiques cellulaires qui font 
+qu'un tumeur soit benigne ou maligne
+
+breastApp -> entrepot d'apprentisage
+breastTest -> entrepot de test
+
+On applique ACP
+> breastActif<-breastApp[1:9]
+	elimination de la variable classe
+> acp_breast<-princomp(breastActif, cor = T, scores = T)
+
+> acp_breast<-princomp(breastActif, cor = T, scores = T)
+> ValPropre<-acp_breast$sdev^2
+> ValPropre
+
+> c1<-acp_breast$loadings[,1]*acp_breast$sdev[1]
+> c2<-acp_breast$loadings[,2]*acp_breast$sdev[2]
+> correlation<- cbind(c1,c2)
+> correlation
+> plot(c1,c2,xlim=c(-1,+1),ylim=c(-1,+1),type="n")
+> abline(h=0,v=0)
+> text(c1,c2,labels=colnames(breastActif),cex=0.5)
+> symbols(0,0,circles=1,inches=F,add=T)
+
+> ad.breast<-rpart(classe~.,breastApp)
+> predict(ad.breast,breastTest)
+   selon le score
+> pred.class<-predict(ad.breast,breastTest, type="class")
+   selon l'appartenance de classe
+
+mc<-table(breastTest$classe,pred.class)
+	on compare le taux de mauvaise classification
+ pred.class
+            begnin malignant
+  begnin       184        15
+  malignant      7        94
+
+TMC_total = 22/300 
+	taux tres elevé
+=>Ajuter le modèle
+
+library(party)
+
+> x.ct <- ctree(classe ~ ., data = breastActif)
+> plot(x.ct, main="Decision tree created using ctree", 
+ type="simple", cex=.90)
