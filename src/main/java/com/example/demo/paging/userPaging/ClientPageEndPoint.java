@@ -13,12 +13,15 @@ public class ClientPageEndPoint {
     private final ClientPageService clientPageService;
 
     public ClientPageEndPoint(ClientPageService clientPageService) {
+
         this.clientPageService = clientPageService;
     }
 
     @GetMapping
     public ResponseEntity<Page<Client>> getClients(ClientPage employeePage,
                                                    ClientSearchCriteria employeeSearchCriteria){
+        System.out.println("doing paging");
+        System.out.println(clientPageService.getClients(employeePage, employeeSearchCriteria));
         return new ResponseEntity<>(clientPageService.getClients(employeePage, employeeSearchCriteria),
                 HttpStatus.OK);
     }

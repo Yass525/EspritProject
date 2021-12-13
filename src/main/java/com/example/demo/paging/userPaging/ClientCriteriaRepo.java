@@ -59,6 +59,13 @@ public class ClientCriteriaRepo {
                             "%" + clientSearchCriteria.getPrenom() + "%")
             );
         }
+
+        if(Objects.nonNull(clientSearchCriteria.getEmail())){
+            predicates.add(
+                    criteriaBuilder.like(employeeRoot.get("eMail"),
+                            "%" + clientSearchCriteria.getEmail() + "%")
+            );
+        }
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 
