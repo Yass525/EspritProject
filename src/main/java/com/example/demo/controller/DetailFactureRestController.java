@@ -51,7 +51,7 @@ IDetailFacture detailfactureService;
 
 			return detailfactureService.retrieveDetailsFacture(IdDetailsFacture);
 			}
-			// http://localhost:8089/SpringMVC/servlet/remove-detailsFacture/{detailsFacture-id}
+			// http://localhost:8081/SpringMVC/servlet/remove-detailsFacture/{detailsFacture-id}
 
 			@DeleteMapping("/remove-detailsFacture/{detailsFacture-id}")
 

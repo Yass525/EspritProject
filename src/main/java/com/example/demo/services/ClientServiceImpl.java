@@ -6,13 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Client;
-
+import com.example.demo.entity.Facture;
 import com.example.demo.repositories.ClientRepository;
+import com.example.demo.repositories.FactureRepository;
 
 @Service
 public class ClientServiceImpl implements IClient {
 	@Autowired
 	private ClientRepository clientRepository;
+	@Autowired
+	private FactureRepository  facturerepo;
 
 	@Override
 	public List<Client> retrieveAllClients() {
@@ -47,5 +50,21 @@ public class ClientServiceImpl implements IClient {
 		Client client =clientRepository.findById(id).orElse(null);
 		return client;
 	}
+	@Override
+	
+	public Facture findInvoiceById(Long id) {
+		return facturerepo.findById(id).orElse(null);
 
+}
+	@Override
+	
+	public List <Facture> fetchByIdWithClientWithInvoiceLine(Long id) {
+		List <Facture> facture=(List <Facture>)facturerepo.fetchByIdWithClientWithInvoiceLine(id);
+		return facture ;
+	}
+	@Override
+	
+	public void saveFacture(Facture facture) {
+		facturerepo.save(facture);
+	}
 }

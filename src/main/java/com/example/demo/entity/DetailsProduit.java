@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -14,8 +15,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.core.SerializableString;
+
 @Entity
-public class DetailsProduit implements Serialisable {
+public class DetailsProduit implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long idDetailProduit;

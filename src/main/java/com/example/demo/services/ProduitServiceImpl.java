@@ -6,12 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Produit;
+import com.example.demo.entity.Stock;
 import com.example.demo.repositories.ProduitRpository;
+import com.example.demo.repositories.StockRepository;
 
 @Service
 public class ProduitServiceImpl implements IProduit {
 	@Autowired
 	private ProduitRpository produitRepository;
+	private StockRepository stockRepository;
 
 	@Override
 	public List<Produit> retrieveAllProduits() {
@@ -46,5 +49,16 @@ public class ProduitServiceImpl implements IProduit {
 		Produit produit = produitRepository.findById(id).orElse(null);
 		return produit;
 	}
+	@Override
+	public String affectProduitToStock(Long idProduit,Long idStock){
+		Stock stockEntity=stockRepository.findById(idStock).get();
+		Produit produitEntity=produitRepository.findById(idProduit).get();
+		produitEntity.setStock(stockEntity);
+		
+		produitRepository.save(produitEntity);
+		return"success";
+		
+	}
+	
 
 }

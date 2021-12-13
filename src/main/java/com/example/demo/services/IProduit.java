@@ -14,5 +14,6 @@ public interface IProduit {
 	Produit updateProduit(Produit u);
 
 	Produit retrieveProduit(Long id);
+	String affectProduitToStock(Long idProduit,Long idStock);
 
 }

@@ -2,7 +2,10 @@ package com.example.demo.entity;
 
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,63 +17,51 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import com.example.demo.entity.DetailsFacture;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 @Entity
-public class Facture implements Serialisable {
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class Facture implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	public long IdFacture;
-	public Float MontantRemise;
-	public Float MontantFacture;
+	private long IdFacture;
+	private Float MontantRemise;
+	private Float MontantFacture;
 	@Temporal(TemporalType.DATE)
-	public Date DateFacture;
-	public boolean Active;
+	private Date DateFacture;
+	private boolean Active;
+	
+	
 	@ManyToOne
 	Client client;
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="facture")
 	private Set<DetailsFacture> DetailsFacture ;
-	public long getIdFacture() {
-		return IdFacture;
-	}
-	public void setIdFacture(long idFacture) {
-		IdFacture = idFacture;
-	}
-	public Float getMontantRemise() {
-		return MontantRemise;
-	}
-	public void setMontantRemise(Float montantRemise) {
-		MontantRemise = montantRemise;
-	}
-	public Float getMontantFacture() {
-		return MontantFacture;
-	}
-	public void setMontantFacture(Float montantFacture) {
-		MontantFacture = montantFacture;
-	}
-	public Date getDateFacture() {
-		return DateFacture;
-	}
-	public void setDateFacture(Date dateFacture) {
-		DateFacture = dateFacture;
-	}
-	public boolean isActive() {
-		return Active;
-	}
-	public void setActive(boolean active) {
-		Active = active;
-	}
 	
-	public Facture(long idFacture, Float montantRemise, Float montantFacture, Date dateFacture, boolean active,
-			Client client) {
-		super();
-		IdFacture = idFacture;
-		MontantRemise = montantRemise;
-		MontantFacture = montantFacture;
-		DateFacture = dateFacture;
-		Active = active;
-		this.client = client;
-	}
 	
+	
+	
+	
+	
+	//public Double getMontantFacture() {
+		//Double total = 0.0;
+		//for(DetailsFacture details : DetailsFacture) {
+			//total+= details.calculatePrice();
+	//	}
+		//return total;
+	//}
 	
 	
 
