@@ -1,0 +1,36 @@
+<h1 style="text-align: center">All Users</h1>
+
+<mat-form-field>
+    <mat-label>Filter by Username</mat-label>
+    <input matInput type="text" [(ngModel)]="filterValue" (input)="findByName(filterValue)" placeholder="Search Username" />
+</mat-form-field>
+
+<div *ngIf="dataSource">
+    <mat-table [dataSource]="dataSource.content">
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToProfile(row.id)"></mat-row>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.idClient }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Name</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.nom }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>role</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.role }}</mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+            <mat-cell *matCellDef="let row">{{ row.eMail }}</mat-cell>
+        </ng-container>
+    </mat-table>
+
+    <mat-paginator [length]="dataSource.totalElements" [pageSize]="dataSource.pageable.pageSize" [pageSizeOptions]="[2, 4, 3, 5, 10, 25, 100]" (page)="pageEvent = $event; onPaginateChange($event)" showFirstLastButtons>
+    </mat-paginator>
+</div>
