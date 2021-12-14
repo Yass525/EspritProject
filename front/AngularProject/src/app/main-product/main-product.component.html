@@ -1,0 +1,18 @@
+
+<button class="btn btn-success" (click)="showForm()">Add new Product</button>
+<app-form-product (addEvent)="saveProduct($event)"
+                  *ngIf="showFormTemplate" [updateProduct]="inputProduct">
+
+</app-form-product>
+<div class="row" *ngIf="!showFormTemplate">
+  <app-product class="col-md-3" *ngFor="let object of listProduct"
+  [product]="object" (notification)="like($event)"
+  (deleteEvent)="delete($event)"
+  (updateEvent)="updateForm($event)" >
+
+  </app-product>
+</div>
+<div disabled>
+  <p>Publicite ads</p>
+</div>
+

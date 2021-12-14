@@ -1,0 +1,28 @@
+{
+  "invoice": [
+    {
+      "montantFacture": 500,
+      "montantRemise": 20,
+      "dateFacture": "14/07/2021",
+      "active": "true",
+      "idFacture": 1,
+      "id": 1
+    },
+    {
+      "montantFacture": 1000,
+      "montantRemise": 10,
+      "dateFacture": "02/10/2020",
+      "active": "true",
+      "idFacture": 2,
+      "id": 2
+    },
+    {
+      "montantFacture": 5000,
+      "montantRemise": 5,
+      "dateFacture": "21/11/2021",
+      "active": "false",
+      "idFacture": 3,
+      "id": 3
+    }
+  ]
+}

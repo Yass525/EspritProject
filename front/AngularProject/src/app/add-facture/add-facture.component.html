@@ -1,0 +1,42 @@
+<div class="container">
+    <div>
+    <h2>Ajouter une Facture :</h2>
+    </div>
+    <form >
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >ID Facture</label>
+    <input type="text" [(ngModel)]="newFacture.idFacture"
+    name="idFacture" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >Montant Facture</label>
+    <input type="number"[(ngModel)]= "newFacture.montantFacture"
+    name="montantFacture" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Montant Remise</label>
+    <input type="number" [(ngModel)]= "newFacture.montantRemise"
+    name="montantRemise" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+    <label >Date Facture</label>
+    <input type="date" [(ngModel)]= "newFacture.dateFacture"
+    name="dateFacture" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Active</label>
+        <input type="boolean" [(ngModel)]= "newFacture.active"
+        name="active" class="form-control">
+        </div>
+    <div class="mt-2">
+    <button type="submit" (click)="addFacture()" class="btn btn-success">Ajouter</button>
+    </div>
+    </form>
+    </div>
+    <div class="col-6">
+        <p class="lead">Payment Methods:</p>
+        <img src="../../assets/img/credit/visa.png" alt="Visa">
+        <img src="../../assets/img/credit/mastercard.png" alt="Mastercard">
+        <img src="../../assets/img/credit/american-express.png" alt="American Express">
+        <img src="../../assets/img/credit/paypal2.png" alt="Paypal">
+    </div>

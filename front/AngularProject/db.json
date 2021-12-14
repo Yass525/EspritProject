@@ -1,0 +1,49 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "products": [
+    {
+      "id": "123",
+      "title": "T",
+      "description": "product description.....",
+      "price": 12,
+      "quantity": 0,
+      "nbrLike": 2,
+      "category": "category1",
+      "picture": "test"
+    },
+    {
+      "title": "Pantalon",
+      "description": "DECRIP",
+      "price": 80,
+      "picture": "sdfjl",
+      "quantity": 4,
+      "id": "AL3Vo4B",
+      "nbrLike": null
+    },
+    {
+      "title": "Shoes",
+      "description": "shoes desc",
+      "price": 250,
+      "picture": "sdf",
+      "quantity": 2,
+      "id": "GIsw-vM"
+    },
+    {
+      "title": "Handbag",
+      "description": "handbag desc",
+      "price": 100,
+      "picture": "sdj",
+      "quantity": 1,
+      "id": "YtMggWm"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
