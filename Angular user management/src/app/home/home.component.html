@@ -1,4 +1,3 @@
-<p>home works!</p>
 <div class="container mt-5" id="main-container" *ngIf="userDetails">
     <div class="row d-flex justify-content-center">
         <div class="col-md-7">
@@ -82,7 +81,7 @@
 
                     <div class="modal-footer">
                         <div class="buttons">
-                            <button type="button" class="btn btn-outline-primary px-4" data-dismiss="modal">
+                            <button type="button" class="btn btn-outline-primary px-4" data-dismiss="modal" (click)="refresh()">
                 Close
               </button>
                             <button type="submit" class="btn btn-primary px-4 ms-3" [disabled]="!service.formModel2.valid">

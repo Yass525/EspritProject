@@ -36,7 +36,12 @@ export class LoginComponent implements OnInit {
        // localStorage.setItem('token', res.data);
         this.cookieService.set('token', res.data, 1, '/','localhost', true, "Lax");
        //this.cookieService.set('token', res.data);
+       this.router.navigate(['/header'])
+  .then(() => {
+    window.location.reload();
+  });
         this.router.navigateByUrl('/home');
+        
       },
       err => {
         if (err.status != 200) {

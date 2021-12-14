@@ -1,4 +1,5 @@
-<h1 style="text-align: center">All Users</h1>
+<br />
+<br />
 
 <mat-form-field>
     <mat-label>Filter by Username</mat-label>
@@ -6,12 +7,14 @@
 </mat-form-field>
 
 <div *ngIf="dataSource">
-    <mat-table [dataSource]="dataSource.content">
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="navigateToProfile(row.id)"></mat-row>
+    <mat-table [dataSource]="dataSource.content" matSort (matSortChange)="announceSortChange($event)">
+        <mat-header-row *matHeaderRowDef="displayedColumns">
+            <h1>jjjjjjj</h1>
+        </mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="['/admin/specProfile/', row.idClient]" style="cursor: pointer">88888</mat-row>
 
         <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by idClient">Id</mat-header-cell>
             <mat-cell *matCellDef="let row">{{ row.idClient }}</mat-cell>
         </ng-container>
 

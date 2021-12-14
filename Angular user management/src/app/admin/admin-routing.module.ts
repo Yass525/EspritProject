@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { UsersListPaginatedComponent } from './users-list-paginated/users-list-paginated.component';
+import { AdminProfileForUserComponent } from './admin-profile-for-user/admin-profile-for-user.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,13 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { permittedRoles: ['ROLE_ADMIN'] }
   },
-
+   {
+    path: 'specProfile/:id',
+    component: AdminProfileForUserComponent,
+    canActivate: [AuthGuard],
+    data: { permittedRoles: ['ROLE_ADMIN'] }
+  },
+   
 ];
 
 @NgModule({

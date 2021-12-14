@@ -10,12 +10,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
+import {MatSortModule} from '@angular/material/sort';
+import { A11yModule, LiveAnnouncer } from '@angular/cdk/a11y';
+import { AdminProfileForUserComponent } from './admin-profile-for-user/admin-profile-for-user.component';
 
 console.warn("admin module loaded");
 @NgModule({
   declarations: [
     AdminComponent,
-    UsersListPaginatedComponent
+    UsersListPaginatedComponent,
+    AdminProfileForUserComponent
   ],
   imports: [
     CommonModule,
@@ -25,8 +29,10 @@ console.warn("admin module loaded");
     ReactiveFormsModule,
     MatFormFieldModule,
     MatTableModule,
+    MatSortModule,
+    MatInputModule,
+    A11yModule
 
-        MatInputModule
     
   ],
   exports: [

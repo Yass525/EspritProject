@@ -1,15 +1,27 @@
 <nav class="navbar navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="nav-link" routerLink="admin/adminpanel">Admin Panel</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" routerLink="admin/userslistpaginated">List users</a>
-        </li>
-    </ul>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">
+            <a id="admin" class="nav-link" routerLink="admin/adminpanel" style="visibility: hidden">Admin Panel</a
+      >
+    </li>
+  </ul>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a
+        id="admin2"
+        class="nav-link"
+        routerLink="admin/userslistpaginated"
+        style="visibility: hidden"
+        >List users</a
+      >
+    </li>
+  </ul>
+  <button
+    id="loginBtn"
+    class="btn btn-danger my-2 my-sm-0"
+    (click)="onLogout()"
+    style="visibility: hidden"
+  >
     Logout
   </button>
 </nav>

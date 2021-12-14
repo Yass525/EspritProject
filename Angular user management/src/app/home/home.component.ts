@@ -11,7 +11,7 @@ import { UserService } from '../shared/user.service';
 })
 export class HomeComponent implements OnInit {
 
-   userDetails;
+  userDetails;
 
   constructor(private router: Router, public service: UserService, private toastr: ToastrService) { }
 
@@ -27,6 +27,11 @@ export class HomeComponent implements OnInit {
     );
    
   }
+
+  redirectTo(uri:string){
+   this.router.navigateByUrl('/', {skipLocationChange: true} ).then(()=>
+   this.router.navigate([uri]));
+}
 
   public onOpenModal(type: String, mode: string): void {
     const container = document.getElementById('main-container');
@@ -52,12 +57,15 @@ export class HomeComponent implements OnInit {
         if (res.status==200) {
           this.service.formModel2.reset();
           this.toastr.success('User updated', 'updated successful.');
+        
         } else  if (res.data=="Mail already exists") {
           
-                this.toastr.error('Email is already taken','Choose another e-mail');
+         this.toastr.error('Email is already taken','Choose another e-mail');
                
         } else {
-            this.toastr.error(res.message,'Update failed.');
+
+          this.toastr.error(res.message, 'Update failed.');
+          
             }
           });
         
@@ -66,5 +74,9 @@ export class HomeComponent implements OnInit {
         console.log(err);
       }
     
+  }
+
+  refresh() {
+    this.redirectTo("/home");
   }
 }

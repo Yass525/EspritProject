@@ -116,7 +116,7 @@ export class UserService {
     let params = new HttpParams();
    var header = new HttpHeaders({ 'Authorization': 'Bearer ' +  this.cookieService.get('token') })
    params = params.append('id', (id));
-    return this.http.get(this.BaseURI + '/profile',{params});
+    return this.http.get(this.BaseURI + '/userProfile/',{params});
   }
 
 

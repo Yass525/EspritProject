@@ -6,36 +6,52 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { map, tap } from 'rxjs/operators';
 import { UserData } from 'src/app/shared/user.service';
 import { UserService } from 'src/app/shared/user.service';
+import { MatSort, Sort } from '@angular/material/sort';
+import {LiveAnnouncer} from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-users-list-paginated',
   templateUrl: './users-list-paginated.component.html',
   styleUrls: ['./users-list-paginated.component.css']
 })
-export class UsersListPaginatedComponent implements OnInit {
+export class UsersListPaginatedComponent implements OnInit,AfterViewInit{
    
   filterValue: string = null;
   dataSource: UserData = null;
   pageEvent: PageEvent;
-
+ 
   displayedColumns: string[] = ['id', 'name', 'email', 'role'];
  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute) { }
+
+  UserData: any;
+  
+  constructor(private userService: UserService, private router: Router, private activatedRoute: ActivatedRoute,
+    private _liveAnnouncer: LiveAnnouncer) { 
+ 
+  }
+  
+  ngAfterViewInit(): void {
+    
+  }
+
+
 
   ngOnInit(): void {
     
     this.initDataSource();
-    // this.dataSource.paginator = this.paginator;
+    
   }
 
    initDataSource() {
      this.userService.findAll(1, 5).pipe(
       tap(users => console.log(users)),
       map((userData: UserData) => this.dataSource = userData)
-    ).subscribe();
+     ).subscribe();
+     
    }
   
   onPaginateChange(event: PageEvent) {
@@ -67,7 +83,34 @@ export class UsersListPaginatedComponent implements OnInit {
 
 
   navigateToProfile(id) {
-  this.router.navigate(['./' + id], {relativeTo: this.activatedRoute});
+  this.router.navigate(['/specProfile' , 10], {relativeTo: this.activatedRoute});
   }
+
+  announceSortChange(sort: Sort) {
+    // const data = this.dataSource;
+    // if (!sort.active || sort.direction === '') {
+    //   this.dataSource = data;
+    //   return;
+    // }
+
+    // this.dataSource = data.content.sort((a, b) => {
+    //   const isAsc = sort.direction === 'asc';
+    //   switch (sort.active) {
+    //     case 'id':
+    //       return compare(a.idClient, b.id, isAsc);
+    //     case 'name':
+    //       return compare(a.name, b.name, isAsc);
+    //     case 'email':
+    //       return compare(a.email, b.email, isAsc);
+    //     case 'role':
+    //       return compare(a.role, b.role, isAsc);
+    //     default:
+    //       return 0;
+    //   }
+    // });
+   }
  
+}
+  function compare(a: number | string, b: number | string, isAsc: boolean) {
+  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
