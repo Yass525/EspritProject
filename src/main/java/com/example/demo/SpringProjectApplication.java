@@ -18,6 +18,9 @@ import com.example.demo.entity.Profession;
 import com.example.demo.services.IClient;
 import com.example.demo.services.IDetailFacture;
 import com.example.demo.services.IFournisseur;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 //import com.example.demo.entity.Rayon;
 //import com.example.demo.services.IFacture;
 
@@ -49,6 +52,7 @@ public class SpringProjectApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+
 		// TODO Auto-generated method stub
 		//detailfactureService.addDetailsFacture(new DetailsFacture (1L,245,67F,5,15));
 	 dates = new SimpleDateFormat("yyyy-MM-dd").parse("2018-01-01");
@@ -77,4 +81,17 @@ public class SpringProjectApplication implements CommandLineRunner {
 		
 		System.out.println(dateToString);
 		System.out.println("***************************");  */
+	}
+
+
+	@Bean
+	public WebMvcConfigurer corsConfigurer() {
+		return new WebMvcConfigurer() {
+			@Override
+			public void addCorsMappings(CorsRegistry registry) {
+				registry.addMapping("/**")
+						.allowedOrigins("*")
+						.allowedMethods("GET", "PUT", "POST", "PATCH", "DELETE", "OPTIONS");
+			}
+		};
 	}}

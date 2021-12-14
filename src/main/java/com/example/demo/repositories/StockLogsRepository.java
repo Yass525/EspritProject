@@ -17,6 +17,6 @@ public interface StockLogsRepository extends JpaRepository<StockLogs,Long>{
     @Query(value = "DELETE FROM stock_logs WHERE id_stock = ?1", nativeQuery = true)
     public List<StockLogs> delete(Long id);
 
-    @Query(value = "SELECT * FROM stock_logs WHERE type = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM stock_logs WHERE action = ?1", nativeQuery = true)
     public List<StockLogs> GetByType(String t);
 }

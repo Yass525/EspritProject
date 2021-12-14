@@ -47,6 +47,11 @@ public class StockLogsController {
         List<StockLogs> logs = stockLogsRepository.GetByType(type);
         return logs;
     }
-
+    @GetMapping("/stocklogs/count")
+    @ResponseBody
+    public long getLogSz() {
+        List<StockLogs> logs = stockLogsService.retrieveAllStockLogs();
+        return logs.size();
+    }
 
 }

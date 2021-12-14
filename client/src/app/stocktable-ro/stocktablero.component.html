@@ -1,0 +1,118 @@
+<h3>OOS</h3>
+<div class="content-wrapper" style="padding:10px">
+    <div class="row">
+        <div class="col-xl">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <p>A Total of </p>
+
+                <h3>{{Empty}}</h3>
+
+                <p>Entries are below minimum quantity</p>
+              </div>
+              
+            
+            </div>
+          </div>
+
+         
+
+          
+
+    </div>
+   <!-- <table class="table table-bordered">
+        <thead>                  
+          <tr>
+            <th style="width: 10px">#</th>
+            <th>Task</th>
+            <th>Progress</th>
+            <th style="width: 40px">Label</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>
+              <div class="progress progress-xs">
+                <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+              </div>
+            </td>
+            <td><span class="badge bg-danger">55%</span></td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>Clean database</td>
+            <td>
+              <div class="progress progress-xs">
+                <div class="progress-bar bg-warning" style="width: 70%"></div>
+              </div>
+            </td>
+            <td><span class="badge bg-warning">70%</span></td>
+          </tr>
+          <tr>
+            <td>3.</td>
+            <td>Cron job running</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-primary" style="width: 30%"></div>
+              </div>
+            </td>
+            <td><span class="badge bg-primary">30%</span></td>
+          </tr>
+          <tr>
+            <td>4.</td>
+            <td>Fix and squish bugs</td>
+            <td>
+              <div class="progress progress-xs progress-striped active">
+                <div class="progress-bar bg-success" style="width: 90%"></div>
+              </div>
+            </td>
+            <td><span class="badge bg-success">90%</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <ul class="pagination pagination-sm m-0 float-right">
+        <li class="page-item"><a class="page-link" href="#">«</a></li>
+      </ul>
+      <table mat-table [dataSource]="myDataArray">
+        ...
+      </table> -->
+
+      <table mat-table [dataSource]="dataSource" class="table table-bordered">
+        <ng-container matColumnDef="IdStock">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> # </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.IdStock}} </mat-cell>
+          </ng-container>
+      
+          <!-- Progress Column -->
+          <ng-container matColumnDef="LibelleStock">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.LibelleStock}} </mat-cell>
+          </ng-container>
+      
+          <!-- Name Column -->
+          <ng-container matColumnDef="QteStock">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Qte </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.QteStock}} </mat-cell>
+          </ng-container>
+      
+          <!-- Color Column -->
+          <ng-container matColumnDef="QteMin">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Min Qte </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.QteMin}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Status">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Actions </mat-header-cell>
+            <mat-cell *matCellDef="let row"> <button mat-flat-button color="accent" style="margin-right:5px;color:grey">Edit</button> <button mat-flat-button color="accent"style="color:grey" >Delete</button></mat-cell>
+          </ng-container>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;">
+          </mat-row>
+        </table>
+
+<br>
+<br>
+</div>

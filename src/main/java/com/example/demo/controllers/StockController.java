@@ -32,6 +32,12 @@ public class StockController {
         return allStock;
     }
 
+    @GetMapping("/stock/getpage/{p}")
+    @ResponseBody
+    public List<Stock> getStockPage(@PathVariable("p") Long p) {
+        List<Stock> stocks = stockRepository.getStocksByPage((int)(p-1)*20);
+        return stocks;
+    }
 
     @GetMapping("/stock/get/{id}")
     @ResponseBody
@@ -39,12 +45,12 @@ public class StockController {
         Stock stock = stockService.retrieveStock(Id);
         return stock;
     }
-    @GetMapping("/stock/delete/{id}")
+    @PostMapping("/stock/delete/{id}")
     @ResponseBody
     public String deleteStockById(@PathVariable("id") Long Id) {
             return "Stock deleted ";
     }
-    @GetMapping("/stock/update/{id}")
+    @PostMapping("/stock/update/{id}")
     @ResponseBody
     public Stock updateStockById(@RequestBody Stock c,@PathVariable("id") Long Id) {
         Stock s = stockService.retrieveStock(Id);
@@ -52,6 +58,8 @@ public class StockController {
         log.setId_stock(Id);
         Date date = new Date();
         log.setDate(date);
+        System.out.println("OLD QTE : "+s.getQteStock());
+        System.out.println("NEW QTE : "+c.getQteStock());
         if(s.getQteStock() == c.getQteStock()) return s;
         if(s.getQteStock() > c.getQteStock()){
             log.setAction("WITHDRAW");
@@ -69,7 +77,7 @@ public class StockController {
         Stock updated = stockService.updateStock(c);
         return updated;
     }
-    @GetMapping("/stock/add")
+    @PostMapping("/stock/add")
     @ResponseBody
     public void addStockById(@RequestBody Stock c) {
         Stock s = new Stock();
@@ -80,7 +88,7 @@ public class StockController {
         stockService.addStock(s);
         StockLogs log = new StockLogs();
         log.setId_stock(s.getIdStock());
-        log.setAction("CREATE");
+        log.setAction("DEPOSIT");
         Date date = new Date();
         log.setDate(date);
         stockLogsService.addStockLog(log,"ADMINISTRATOR",(long)1);
@@ -104,4 +112,18 @@ public class StockController {
         List<Stock> x = stockService.findEmptyStocks();
         return x;
     }
+
+    @GetMapping("/stock/info")
+    @ResponseBody
+    public long[] getStockInfo() {
+        long[] myIntArray = new long[4];
+        myIntArray[0]= stockService.getEmptyCount();
+        myIntArray[1]= stockService.getLowCount();
+        myIntArray[2]= stockService.getAvgCount();
+        myIntArray[3]= stockService.getTotalCount();
+        return myIntArray;
+
+    }
+
+
 }

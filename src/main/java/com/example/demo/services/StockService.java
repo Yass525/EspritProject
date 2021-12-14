@@ -73,4 +73,31 @@ public class StockService implements IStock {
 		List<Stock> l=stockRepository.findEmptyStocks();
 		return l;
 	}
+
+
+	@Override
+	public long getEmptyCount(){
+		long l=stockRepository.getEmptyCount();
+		return l;
+	}
+
+	@Override
+	public long getAvgCount(){
+		long l=stockRepository.getAvgCount();
+		return l;
+	}
+
+	@Override
+	public long getLowCount(){
+		long l=stockRepository.getLowCount();
+		return l;
+	}
+
+	@Override
+	public long getTotalCount(){
+		long l=stockRepository.getTotalCount();
+		return l;
+	}
+
+
 }

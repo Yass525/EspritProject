@@ -21,7 +21,10 @@ public interface IStock  {
 
 
 		List<Stock> findLowStocks();
-
+		long getEmptyCount() ;
+		long getAvgCount() ;
+		long getLowCount() ;
+		long getTotalCount() ;
 
 
 }
